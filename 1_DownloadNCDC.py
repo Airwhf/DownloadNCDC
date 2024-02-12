@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore")
 
 if __name__ == "__main__":
     # 选择需要下载的年份
-    year = "2010"
+    year = "2017"
     # 加载站点信息表
 
 
@@ -41,6 +41,7 @@ if __name__ == "__main__":
             file_list.append(file_name)
 
     localpath = './data'
+    os.makedirs(localpath, exist_ok=True)
     os.chdir(localpath)
     # 判断部分文件是否存在
     fileafter = []
