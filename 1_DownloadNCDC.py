@@ -7,6 +7,7 @@ import os
 import warnings
 from ftplib import FTP
 import pandas as pd
+import tqdm
 
 warnings.filterwarnings("ignore")
 
@@ -19,6 +20,7 @@ if __name__ == "__main__":
     # 连接需要下载的ftp站点
     host = 'ftp.ncdc.noaa.gov'
     ftp = FTP()
+    print(ftp)
     ftp.connect(host, 21)
     useranme = None
     password = None
@@ -34,7 +36,7 @@ if __name__ == "__main__":
     station_info['STATION_ID'] = station_info['STATION_ID'].apply(lambda x: str(x).zfill(11))
     station_ids = station_info["STATION_ID"]
     file_list = []
-    for station_id in station_ids:
+    for station_id in tqdm.tqdm(station_ids):
         station_id = str(station_id)
         file_name = f"{station_id[0:6]}-{station_id[6::]}-{year}.gz"
         if filebefore.__contains__(file_name):
